@@ -5,12 +5,13 @@
 			src="../assets/mainBanner.png"
 			alt="welcome to Casimuerto's Fun!"
 		/>
-		<div class="header__menu">
-			<button class="header__button">Products</button>
-			<button class="header__button">Other Stuff</button>
-			<button class="header__button">About us</button>
-		</div>
 	</header>
+
+	<div class="header__menu" ref="header__menu">
+		<button class="header__button">Products</button>
+		<button class="header__button">Other Stuff</button>
+		<button class="header__button">About us</button>
+	</div>
 	<main class="main">
 		<section class="main__latest">
 			<p class="main__text">Latest!</p>
@@ -71,12 +72,23 @@
 	</footer>
 </template>
 <script setup>
-import { ref, onBeforeMount, watch } from "vue";
+import { ref, onBeforeMount, onMounted, watch } from "vue";
+
+const header__menu = ref(null);
+console.log(header__menu);
 
 onBeforeMount(() => {
 	randomNumbers.value.forEach((el, index) => {
 		randomNumbers.value[index] = Math.floor(Math.random() * 100 + 1);
 	});
+});
+onMounted(() => {
+	const observer = new IntersectionObserver(
+		([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
+		{ threshold: [1] }
+	);
+
+	observer.observe(header__menu.value);
 });
 const randomNumbers = ref([0, 0, 0, 0, 0]);
 const currentImage = ref(0);
@@ -108,6 +120,7 @@ watch(currentImage, (newVal, oldVal) => {
 	flex-direction: column;
 	width: 100%;
 	max-width: 100%;
+	margin-bottom: 5px;
 }
 .header__image {
 	width: 100%;
@@ -117,14 +130,19 @@ watch(currentImage, (newVal, oldVal) => {
 	display: flex;
 	justify-content: space-between;
 	column-gap: 10px;
+	position: sticky;
+	top: -1px;
 }
-
+.is-pinned .header__button {
+	color: white;
+}
 .header__button {
-	background-color: azure;
+	background-color: var(--main-color);
 	outline: none;
 	border: none;
 	flex: 1;
 	height: 2rem;
+	border-radius: 5px;
 }
 .header__button:hover {
 	background-color: rgb(176, 243, 243);
