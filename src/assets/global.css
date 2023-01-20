@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
 :root {
 	--main-font: "Pacifico";
-	--main-color: rgb(245, 165, 248);
+	--normal-font: "Open Sans";
+	--main-color: rgb(224, 79, 230);
+	--hover-color: rgb(243, 117, 78);
+	--active-color: rgb(168, 199, 228);
 }

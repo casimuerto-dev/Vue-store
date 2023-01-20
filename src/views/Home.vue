@@ -6,76 +6,88 @@
 			alt="welcome to Casimuerto's Fun!"
 		/>
 	</header>
+	<div class="layout">
+		<div class="menu" ref="menu">
+			<button class="menu__button">Products</button>
+			<button class="menu__button">Other Stuff</button>
+			<button class="menu__button">About us</button>
+		</div>
 
-	<div class="header__menu" ref="header__menu">
-		<button class="header__button">Products</button>
-		<button class="header__button">Other Stuff</button>
-		<button class="header__button">About us</button>
-	</div>
-	<main class="main">
-		<section class="main__latest">
+		<img class="layout__image" src="../assets/toyota-supra.jpg" />
+
+		<main class="main">
 			<p class="main__text">Latest!</p>
-			<div class="main__reel">
-				<span
-					:class="{
-						'main__span-button': true,
-						'material-symbols-outlined': true,
-						disabled: backDisabled,
-					}"
-					@click="handleClick('back')"
-				>
-					arrow_back_ios
-				</span>
-				<img
-					class="main__image"
-					v-for="(el, index) in randomNumbers"
-					v-show="currentImage === index"
-					:src="`https://randomfox.ca/images/${el}.jpg`"
-				/>
+			<section class="main__latest">
+				<div class="main__reel">
+					<span
+						:class="{
+							'main__arrow--button': true,
+							'material-symbols-outlined': true,
+							disabled: backDisabled,
+						}"
+						@click="handleClick('back')"
+					>
+						arrow_back_ios
+					</span>
+					<img
+						class="main__image"
+						v-for="(el, index) in randomNumbers"
+						v-show="currentImage === index"
+						:src="`https://randomfox.ca/images/${el}.jpg`"
+					/>
 
-				<span
-					:class="{
-						'main__span-button': true,
-						'material-symbols-outlined': true,
-						disabled: nextDisabled,
-					}"
-					@click="handleClick('next')"
-				>
-					arrow_forward_ios
-				</span>
+					<span
+						:class="{
+							'main__arrow--button': true,
+							'material-symbols-outlined': true,
+							disabled: nextDisabled,
+						}"
+						@click="handleClick('next')"
+					>
+						arrow_forward_ios
+					</span>
+				</div>
+			</section>
+			<p class="main__text">Check out our main products!</p>
+			<section class="main__products">
+				<div class="main__wrapper">
+					<p class="main__text main__text--modified">Product 1!</p>
+					<img
+						class="main__image--product"
+						src="https://picsum.photos/seed/also/300/300"
+					/>
+					<p class="main__text--normal">Description of the product</p>
+				</div>
+				<div class="main__wrapper">
+					<p class="main__text main__text--modified">Product 2!</p>
+					<img
+						class="main__image--product"
+						src="https://picsum.photos/seed/makia/300/300"
+					/>
+					<p class="main__text--normal">Description of the product</p>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__info">
+				<p class="footer__text">Terms and conditions</p>
+				<p class="footer__text">Certified f-boy</p>
+				<p class="footer__text">Authorized by the state of Rick & Morty</p>
+				<p class="footer__text">All lefts reserved</p>
 			</div>
-		</section>
-		<section class="main__products">
-			<div class="main__wrapper">
-				<p class="main__text">Product 1!</p>
-				<img class="productImage" src="https://picsum.photos/seed/also/300/300" />
+			<div class="footer__info">
+				<p class="footer__text">Follow us on social media!</p>
+				<p class="footer__text">FaceLedger</p>
+				<p class="footer__text">Delayedgram</p>
+				<p class="footer__text">Barker</p>
 			</div>
-			<div class="main__wrapper">
-				<p class="main__text">Product 2!</p>
-				<img class="productImage" src="https://picsum.photos/seed/makia/300/300" />
-			</div>
-		</section>
-	</main>
-	<footer class="footer">
-		<div class="footer__info">
-			<p class="footer__text">Terms and conditions</p>
-			<p class="footer__text">Certified f-boy</p>
-			<p class="footer__text">Authorized by the state of Rick & Morty</p>
-			<p class="footer__text">All lefts reserved</p>
-		</div>
-		<div class="footer__info">
-			<p class="footer__text">Follow us on social media!</p>
-			<p class="footer__text">FaceLedger</p>
-			<p class="footer__text">Delayedgram</p>
-			<p class="footer__text">Barker</p>
-		</div>
-	</footer>
+		</footer>
+	</div>
 </template>
 <script setup>
 import { ref, onBeforeMount, onMounted, watch } from "vue";
 
-const header__menu = ref(null);
-console.log(header__menu);
+const menu = ref(null);
 
 onBeforeMount(() => {
 	randomNumbers.value.forEach((el, index) => {
@@ -83,12 +95,13 @@ onBeforeMount(() => {
 	});
 });
 onMounted(() => {
+	console.log(menu.value);
 	const observer = new IntersectionObserver(
 		([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
 		{ threshold: [1] }
 	);
 
-	observer.observe(header__menu.value);
+	observer.observe(menu.value);
 });
 const randomNumbers = ref([0, 0, 0, 0, 0]);
 const currentImage = ref(0);
@@ -120,70 +133,126 @@ watch(currentImage, (newVal, oldVal) => {
 	flex-direction: column;
 	width: 100%;
 	max-width: 100%;
-	margin-bottom: 5px;
+	margin-bottom: 1px;
 }
 .header__image {
 	width: 100%;
 }
 
-.header__menu {
+.layout {
+	padding: 4px;
+}
+
+.layout__image {
+	width: 100%;
+	margin: 10px 0;
+	border-radius: 2px;
+}
+
+.menu {
 	display: flex;
 	justify-content: space-between;
 	column-gap: 10px;
 	position: sticky;
 	top: -1px;
 }
-.is-pinned .header__button {
+.is-pinned .menu__button {
 	color: white;
+	background-color: bisque;
 }
-.header__button {
+.menu__button {
 	background-color: var(--main-color);
 	outline: none;
 	border: none;
 	flex: 1;
 	height: 2rem;
 	border-radius: 5px;
+	color: white;
+	font-size: 15px;
 }
-.header__button:hover {
-	background-color: rgb(176, 243, 243);
+.menu__button:hover {
+	background-color: var(--hover-color);
 	cursor: pointer;
 }
 
-main {
-	margin-top: 20px;
+.menu__button:active {
+	background-color: var(--active-color);
 }
 
-.latest {
+.main__latest {
 	height: 100%;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-family: var(--main-font);
 }
 
-span {
+.main__text {
+	width: 100%;
+	font-family: var(--main-font);
+	font-size: 25px;
+	text-align: center;
+	background-color: var(--main-color);
+	color: white;
+	position: sticky;
+	top: 0px;
+	border-radius: 20px;
+}
+
+.main__text--modified {
+	position: static;
+}
+.main__text--normal {
+	text-align: center;
+	font-family: var(--normal-font);
+	font-style: italic;
+}
+
+.main__arrow--button {
 	font-size: 10vw;
 }
-span:hover {
+.main__arrow--button:hover {
 	cursor: pointer;
 }
 .disabled {
 	color: rgba(138, 141, 141, 0.575);
 }
-.reel {
+.main__reel {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 20px;
 }
-.reelImage {
-	max-height: 40%;
+.main__image {
+	height: 40%;
 	margin: 20px;
+	width: 30%;
 	max-width: 30%;
+	max-height: 40%;
 }
-.productImage {
+
+.main__products {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 20px;
+}
+
+.main__wrapper {
+}
+
+.main__image--product {
 	width: 300px;
-	height: 300px;
+	border-radius: 1rem;
+	transition-property: width;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in;
+	margin-top: 10px;
+}
+
+.main__image--product:hover {
+	cursor: pointer;
+
+	width: 320px;
 }
 </style>

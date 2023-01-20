@@ -16,6 +16,5 @@ import Home from "./views/Home.vue";
 body {
 	margin: 0;
 	padding: 0;
-	background-color: rgb(255, 255, 255);
 }
 </style>
