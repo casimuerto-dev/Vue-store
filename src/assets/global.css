@@ -7,7 +7,7 @@
 :root {
 	--main-font: "Pacifico";
 	--normal-font: "Open Sans";
-	--main-color: rgb(224, 79, 230);
-	--hover-color: rgb(243, 117, 78);
-	--active-color: rgb(168, 199, 228);
+	--main-color: rgb(0, 140, 255);
+	--secondary-color: rgb(104, 163, 211);
+	--hover-color: rgb(65, 128, 201);
 }

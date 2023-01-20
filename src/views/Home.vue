@@ -7,12 +7,12 @@
 		/>
 	</header>
 	<div class="layout">
+		<p class="main__text">Welcome</p>
 		<div class="menu" ref="menu">
 			<button class="menu__button">Products</button>
 			<button class="menu__button">Other Stuff</button>
 			<button class="menu__button">About us</button>
 		</div>
-
 		<img class="layout__image" src="../assets/toyota-supra.jpg" />
 
 		<main class="main">
@@ -29,12 +29,15 @@
 					>
 						arrow_back_ios
 					</span>
-					<img
-						class="main__image"
-						v-for="(el, index) in randomNumbers"
-						v-show="currentImage === index"
-						:src="`https://randomfox.ca/images/${el}.jpg`"
-					/>
+					<TransitionGroup name="imageReel">
+						<img
+							v-for="(el, index) in randomNumbers"
+							v-show="currentImage === index"
+							class="main__image"
+							:src="`https://randomfox.ca/images/${el}.jpg`"
+							:key="index"
+						/>
+					</TransitionGroup>
 
 					<span
 						:class="{
@@ -153,15 +156,15 @@ watch(currentImage, (newVal, oldVal) => {
 	display: flex;
 	justify-content: space-between;
 	column-gap: 10px;
-	position: sticky;
-	top: -1px;
+	margin-bottom: 10px;
+	/* position: sticky;
+	top: -1px; */
 }
 .is-pinned .menu__button {
 	color: white;
-	background-color: bisque;
 }
 .menu__button {
-	background-color: var(--main-color);
+	background-color: var(--secondary-color);
 	outline: none;
 	border: none;
 	flex: 1;
@@ -169,6 +172,8 @@ watch(currentImage, (newVal, oldVal) => {
 	border-radius: 5px;
 	color: white;
 	font-size: 15px;
+	font-family: var(--normal-font);
+	font-style: italic;
 }
 .menu__button:hover {
 	background-color: var(--hover-color);
@@ -176,7 +181,7 @@ watch(currentImage, (newVal, oldVal) => {
 }
 
 .menu__button:active {
-	background-color: var(--active-color);
+	background-color: var(--main-color);
 }
 
 .main__latest {
@@ -202,6 +207,7 @@ watch(currentImage, (newVal, oldVal) => {
 
 .main__text--modified {
 	position: static;
+	background-color: var(--secondary-color);
 }
 .main__text--normal {
 	text-align: center;
@@ -230,6 +236,7 @@ watch(currentImage, (newVal, oldVal) => {
 	width: 30%;
 	max-width: 30%;
 	max-height: 40%;
+	margin-right: 35px;
 }
 
 .main__products {
@@ -254,5 +261,25 @@ watch(currentImage, (newVal, oldVal) => {
 	cursor: pointer;
 
 	width: 320px;
+}
+
+.imageReel-move,
+.imageReel-enter-active,
+.imageReel-leave-active {
+	transition: all 1s ease-in;
+}
+.imageReel-enter-from {
+	opacity: 0;
+	height: 40%;
+	width: 30%;
+}
+
+.imageReel-leave-to {
+	opacity: 0;
+	height: 0%;
+	width: 0%;
+}
+.imageReel-leave-active {
+	position: absolute;
 }
 </style>
