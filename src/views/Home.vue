@@ -60,32 +60,39 @@
 						src="https://picsum.photos/seed/also/300/300"
 					/>
 					<p class="main__text--normal">Description of the product</p>
+					<p class="main__text--normal">
+						This product is amazing because this and this and that
+					</p>
 				</div>
 				<div class="main__wrapper">
 					<p class="main__text main__text--modified">Product 2!</p>
+
 					<img
 						class="main__image--product"
 						src="https://picsum.photos/seed/makia/300/300"
 					/>
 					<p class="main__text--normal">Description of the product</p>
+					<p class="main__text--normal">
+						This product is amazing because this and this and that
+					</p>
 				</div>
 			</section>
 		</main>
-		<footer class="footer">
-			<div class="footer__info">
-				<p class="footer__text">Terms and conditions</p>
-				<p class="footer__text">Certified f-boy</p>
-				<p class="footer__text">Authorized by the state of Rick & Morty</p>
-				<p class="footer__text">All lefts reserved</p>
-			</div>
-			<div class="footer__info">
-				<p class="footer__text">Follow us on social media!</p>
-				<p class="footer__text">FaceLedger</p>
-				<p class="footer__text">Delayedgram</p>
-				<p class="footer__text">Barker</p>
-			</div>
-		</footer>
 	</div>
+	<footer class="footer">
+		<div class="footer__info">
+			<p class="footer__text">Terms and conditions</p>
+			<p class="footer__text">Certified f-boy</p>
+			<p class="footer__text">Authorized by the state of Rick & Morty</p>
+			<p class="footer__text">All lefts reserved</p>
+		</div>
+		<div class="footer__info">
+			<p class="footer__text">Follow us on social media!</p>
+			<p class="footer__text">FaceLedger</p>
+			<p class="footer__text">Delayedgram</p>
+			<p class="footer__text">Barker</p>
+		</div>
+	</footer>
 </template>
 <script setup>
 import { ref, onBeforeMount, onMounted, watch } from "vue";
@@ -174,6 +181,7 @@ watch(currentImage, (newVal, oldVal) => {
 	font-size: 15px;
 	font-family: var(--normal-font);
 	font-style: italic;
+	transition: all 0.2s ease;
 }
 .menu__button:hover {
 	background-color: var(--hover-color);
@@ -181,7 +189,7 @@ watch(currentImage, (newVal, oldVal) => {
 }
 
 .menu__button:active {
-	background-color: var(--main-color);
+	background-color: var(--active-color);
 }
 
 .main__latest {
@@ -246,6 +254,10 @@ watch(currentImage, (newVal, oldVal) => {
 }
 
 .main__wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .main__image--product {
@@ -278,8 +290,38 @@ watch(currentImage, (newVal, oldVal) => {
 	opacity: 0;
 	height: 0%;
 	width: 0%;
+	transform: translate(200px, 200px);
 }
 .imageReel-leave-active {
 	position: absolute;
+}
+
+.footer {
+	display: flex;
+	background-color: black;
+	color: white;
+	justify-content: space-around;
+	margin-top: 200px;
+}
+
+.footer__info {
+	display: flex;
+	flex-direction: column;
+
+	align-items: flex-start;
+}
+
+.footer__text {
+	margin: 10px 0;
+	font-family: var(--normal-font);
+	transition: all 0.2s ease;
+}
+.footer__text:hover {
+	cursor: pointer;
+	color: var(--hover-color);
+}
+
+.footer__text:active {
+	color: var(--active-color);
 }
 </style>
