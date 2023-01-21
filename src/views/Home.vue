@@ -20,6 +20,7 @@
 			<section class="main__latest">
 				<div class="main__reel">
 					<span
+						style="transform: rotate(180deg)"
 						:class="{
 							'main__arrow--button': true,
 							'material-symbols-outlined': true,
@@ -27,14 +28,14 @@
 						}"
 						@click="handleClick('back')"
 					>
-						arrow_back_ios
+						arrow_forward_ios
 					</span>
 					<TransitionGroup name="imageReel">
 						<img
 							v-for="(el, index) in randomNumbers"
 							v-show="currentImage === index"
 							class="main__image"
-							:src="`https://randomfox.ca/images/${el}.jpg`"
+							:src="`https://picsum.photos/seed/${el}/300/300`"
 							:key="index"
 						/>
 					</TransitionGroup>
@@ -81,13 +82,17 @@
 	</div>
 	<footer class="footer">
 		<div class="footer__info">
-			<p class="footer__text">Terms and conditions</p>
+			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
+				Authorized by the state of Rick & Morty
+			</p>
 			<p class="footer__text">Certified f-boy</p>
-			<p class="footer__text">Authorized by the state of Rick & Morty</p>
+			<p class="footer__text">Terms and conditions</p>
 			<p class="footer__text">All lefts reserved</p>
 		</div>
 		<div class="footer__info">
-			<p class="footer__text">Follow us on social media!</p>
+			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
+				Follow us on social media!
+			</p>
 			<p class="footer__text">FaceLedger</p>
 			<p class="footer__text">Delayedgram</p>
 			<p class="footer__text">Barker</p>
@@ -113,7 +118,7 @@ onMounted(() => {
 
 	observer.observe(menu.value);
 });
-const randomNumbers = ref([0, 0, 0, 0, 0]);
+const randomNumbers = ref([1, 2, 6, 4, 5]);
 const currentImage = ref(0);
 const backDisabled = ref(true);
 const nextDisabled = ref(false);
@@ -239,12 +244,9 @@ watch(currentImage, (newVal, oldVal) => {
 	margin-bottom: 20px;
 }
 .main__image {
-	height: 40%;
 	margin: 20px;
-	width: 30%;
-	max-width: 30%;
-	max-height: 40%;
-	margin-right: 35px;
+	max-width: 300px;
+	border-radius: 20px;
 }
 
 .main__products {
@@ -282,18 +284,14 @@ watch(currentImage, (newVal, oldVal) => {
 }
 .imageReel-enter-from {
 	opacity: 0;
-	height: 40%;
-	width: 30%;
 }
 
 .imageReel-leave-to {
 	opacity: 0;
-	height: 0%;
-	width: 0%;
-	transform: translate(200px, 200px);
+	transform: rotate(180deg);
 }
 .imageReel-leave-active {
-	position: absolute;
+	position: fixed;
 }
 
 .footer {
