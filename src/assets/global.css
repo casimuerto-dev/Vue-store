@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
 :root {
-	--main-font: "Pacifico";
+	--main-font: "Raleway";
 	--normal-font: "Open Sans";
-	--main-color: rgb(0, 140, 255);
-	--secondary-color: rgb(104, 163, 211);
-	--hover-color: rgb(65, 128, 201);
-	--active-color: rgb(150, 207, 133);
+	--main-color: rgb(178, 85, 221);
+	--secondary-color: rgb(0, 140, 255);
+	--hover-color: rgb(150, 207, 133);
+	--active-color: rgb(65, 128, 201);
 }

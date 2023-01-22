@@ -1,21 +1,16 @@
 <template>
-	<header class="header">
-		<img
-			class="header__image"
-			src="../assets/mainBanner.png"
-			alt="welcome to Casimuerto's Fun!"
-		/>
-	</header>
-	<div class="layout">
-		<p class="main__text">Welcome</p>
-		<div class="menu" ref="menu">
-			<button class="menu__button">Products</button>
-			<button class="menu__button">Other Stuff</button>
-			<button class="menu__button">About us</button>
-		</div>
-		<img class="layout__image" src="../assets/toyota-supra.jpg" />
-
+	<Layout>
 		<main class="main">
+			<p class="main__text">Welcome</p>
+			<div class="menu" ref="menu">
+				<button class="menu__button">Products</button>
+				<button class="menu__button">Other Stuff</button>
+				<button class="menu__button">About us</button>
+			</div>
+			<img
+				class="main__image--presentation"
+				src="../assets/toyota-supra-modified.jpg"
+			/>
 			<p class="main__text">Latest!</p>
 			<section class="main__latest">
 				<div class="main__reel">
@@ -79,28 +74,11 @@
 				</div>
 			</section>
 		</main>
-	</div>
-	<footer class="footer">
-		<div class="footer__info">
-			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
-				Authorized by the state of Rick & Morty
-			</p>
-			<p class="footer__text">Certified f-boy</p>
-			<p class="footer__text">Terms and conditions</p>
-			<p class="footer__text">All lefts reserved</p>
-		</div>
-		<div class="footer__info">
-			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
-				Follow us on social media!
-			</p>
-			<p class="footer__text">FaceLedger</p>
-			<p class="footer__text">Delayedgram</p>
-			<p class="footer__text">Barker</p>
-		</div>
-	</footer>
+	</Layout>
 </template>
 <script setup>
 import { ref, onBeforeMount, onMounted, watch } from "vue";
+import Layout from "../components/Layout.vue";
 
 const menu = ref(null);
 
@@ -142,26 +120,14 @@ watch(currentImage, (newVal, oldVal) => {
 });
 </script>
 <style scoped>
-.header {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	width: 100%;
-	max-width: 100%;
-	margin-bottom: 1px;
-}
-.header__image {
-	width: 100%;
-}
-
-.layout {
-	padding: 4px;
-}
-
-.layout__image {
+.main__image--presentation {
 	width: 100%;
 	margin: 10px 0;
 	border-radius: 2px;
+}
+
+.main {
+	padding: 4px;
 }
 
 .menu {
@@ -209,7 +175,7 @@ watch(currentImage, (newVal, oldVal) => {
 .main__text {
 	width: 100%;
 	font-family: var(--main-font);
-	font-size: 25px;
+	font-size: 30px;
 	text-align: center;
 	background-color: var(--main-color);
 	color: white;
@@ -277,49 +243,20 @@ watch(currentImage, (newVal, oldVal) => {
 	width: 320px;
 }
 
-.imageReel-move,
 .imageReel-enter-active,
 .imageReel-leave-active {
 	transition: all 1s ease-in;
 }
 .imageReel-enter-from {
 	opacity: 0;
+	transform: translateX(-500px);
 }
 
 .imageReel-leave-to {
 	opacity: 0;
-	transform: rotate(180deg);
+	transform: translateX(500px);
 }
 .imageReel-leave-active {
-	position: fixed;
-}
-
-.footer {
-	display: flex;
-	background-color: black;
-	color: white;
-	justify-content: space-around;
-	margin-top: 200px;
-}
-
-.footer__info {
-	display: flex;
-	flex-direction: column;
-
-	align-items: flex-start;
-}
-
-.footer__text {
-	margin: 10px 0;
-	font-family: var(--normal-font);
-	transition: all 0.2s ease;
-}
-.footer__text:hover {
-	cursor: pointer;
-	color: var(--hover-color);
-}
-
-.footer__text:active {
-	color: var(--active-color);
+	position: absolute;
 }
 </style>
