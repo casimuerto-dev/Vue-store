@@ -182,11 +182,14 @@ watch(currentImage, (newVal, oldVal) => {
 	position: sticky;
 	top: 0px;
 	border-radius: 20px;
+	z-index: 20;
 }
 
 .main__text--modified {
 	position: static;
 	background-color: var(--secondary-color);
+	width: 80%;
+	z-index: 2;
 }
 .main__text--normal {
 	text-align: center;
@@ -209,6 +212,13 @@ watch(currentImage, (newVal, oldVal) => {
 	justify-content: center;
 	margin-bottom: 20px;
 }
+
+@media screen and (max-width: 430px) {
+	.main__reel {
+		z-index: 1;
+		flex-direction: column;
+	}
+}
 .main__image {
 	margin: 20px;
 	max-width: 300px;
@@ -229,7 +239,8 @@ watch(currentImage, (newVal, oldVal) => {
 }
 
 .main__image--product {
-	width: 300px;
+	width: 80%;
+	max-width: 300px;
 	border-radius: 1rem;
 	transition-property: width;
 	transition-duration: 0.25s;
@@ -239,8 +250,7 @@ watch(currentImage, (newVal, oldVal) => {
 
 .main__image--product:hover {
 	cursor: pointer;
-
-	width: 320px;
+	width: 85%;
 }
 
 .imageReel-enter-active,

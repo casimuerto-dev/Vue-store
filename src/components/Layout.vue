@@ -11,7 +11,7 @@
 
 	<footer class="footer">
 		<div class="footer__info">
-			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
+			<p class="footer__text" style="text-decoration: underline">
 				Authorized by the state of Rick & Morty
 			</p>
 			<p class="footer__text">Certified f-boy</p>
@@ -19,7 +19,7 @@
 			<p class="footer__text">All lefts reserved</p>
 		</div>
 		<div class="footer__info">
-			<p class="footer__text" style="font-size: 25px; text-decoration: underline">
+			<p class="footer__text" style="text-decoration: underline">
 				Follow us on social media!
 			</p>
 			<p class="footer__text">FaceLedger</p>
@@ -46,7 +46,7 @@
 	background-color: black;
 	color: white;
 	justify-content: space-around;
-	margin-top: 200px;
+	margin-top: 115px;
 }
 
 .footer__info {
@@ -68,5 +68,14 @@
 
 .footer__text:active {
 	color: var(--active-color);
+}
+
+@media screen and (max-width: 540px) {
+	.footer {
+		flex-direction: column;
+	}
+	.footer__info {
+		align-items: center;
+	}
 }
 </style>
