@@ -3,9 +3,12 @@
 		<main class="main">
 			<p class="main__text">Welcome</p>
 			<div class="menu" ref="menu">
-				<button class="menu__button">Products</button>
-				<button class="menu__button">Other Stuff</button>
-				<button class="menu__button">About us</button>
+				<button class="menu__button" @click="handlePush('products')">
+					Products
+				</button>
+
+				<button class="menu__button" @click="handlePush">Other Stuff</button>
+				<button class="menu__button" @click="handlePush">About us</button>
 			</div>
 			<img
 				class="main__image--presentation"
@@ -26,13 +29,19 @@
 						arrow_forward_ios
 					</span>
 					<TransitionGroup name="imageReel">
-						<img
+						<div
 							v-for="(el, index) in randomNumbers"
 							v-show="currentImage === index"
-							class="main__image"
-							:src="`https://picsum.photos/seed/${el}/300/300`"
 							:key="index"
-						/>
+						>
+							<img
+								class="main__image"
+								:src="`https://picsum.photos/seed/${el}/300/300`"
+							/>
+							<p class="main__text--normal">
+								This product is amazing because this and this and that
+							</p>
+						</div>
 					</TransitionGroup>
 
 					<span
@@ -79,9 +88,10 @@
 <script setup>
 import { ref, onBeforeMount, onMounted, watch } from "vue";
 import Layout from "../components/Layout.vue";
+import { useRouter } from "vue-router";
 
 const menu = ref(null);
-
+const router = useRouter();
 onBeforeMount(() => {
 	randomNumbers.value.forEach((el, index) => {
 		randomNumbers.value[index] = Math.floor(Math.random() * 100 + 1);
@@ -100,6 +110,10 @@ const randomNumbers = ref([1, 2, 6, 4, 5]);
 const currentImage = ref(0);
 const backDisabled = ref(true);
 const nextDisabled = ref(false);
+
+const handlePush = (route) => {
+	router.push(route);
+};
 const handleClick = (direction) => {
 	if (direction === "next") {
 		if (currentImage.value < 4) {
