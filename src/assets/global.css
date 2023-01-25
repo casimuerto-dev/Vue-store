@@ -12,3 +12,41 @@
 	--hover-color: rgb(150, 207, 133);
 	--active-color: rgb(65, 128, 201);
 }
+
+.main {
+	padding: 4px;
+}
+
+.main__text {
+	width: 100%;
+	font-family: var(--main-font);
+	font-size: 30px;
+	text-align: center;
+	background-color: var(--main-color);
+	color: white;
+	position: sticky;
+	top: 0px;
+	border-radius: 20px;
+	z-index: 20;
+}
+
+.main__text--normal {
+	text-align: center;
+	font-family: var(--normal-font);
+	font-style: italic;
+}
+
+.main__image--product {
+	width: 80%;
+
+	border-radius: 1rem;
+	transition-property: all;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in;
+	margin-top: 10px;
+}
+
+.main__image--product:hover {
+	cursor: pointer;
+	width: 85%;
+}

@@ -140,10 +140,6 @@ watch(currentImage, (newVal, oldVal) => {
 	border-radius: 2px;
 }
 
-.main {
-	padding: 4px;
-}
-
 .menu {
 	display: flex;
 	justify-content: space-between;
@@ -186,29 +182,11 @@ watch(currentImage, (newVal, oldVal) => {
 	align-items: center;
 }
 
-.main__text {
-	width: 100%;
-	font-family: var(--main-font);
-	font-size: 30px;
-	text-align: center;
-	background-color: var(--main-color);
-	color: white;
-	position: sticky;
-	top: 0px;
-	border-radius: 20px;
-	z-index: 20;
-}
-
 .main__text--modified {
 	position: static;
 	background-color: var(--secondary-color);
 	width: 80%;
 	z-index: 2;
-}
-.main__text--normal {
-	text-align: center;
-	font-family: var(--normal-font);
-	font-style: italic;
 }
 
 .main__arrow--button {
@@ -250,21 +228,6 @@ watch(currentImage, (newVal, oldVal) => {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-}
-
-.main__image--product {
-	width: 80%;
-	max-width: 300px;
-	border-radius: 1rem;
-	transition-property: width;
-	transition-duration: 0.25s;
-	transition-timing-function: ease-in;
-	margin-top: 10px;
-}
-
-.main__image--product:hover {
-	cursor: pointer;
-	width: 85%;
 }
 
 .imageReel-enter-active,
