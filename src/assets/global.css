@@ -39,7 +39,7 @@
 .main__image--product {
 	width: 80%;
 
-	border-radius: 1rem;
+	border-radius: 50%;
 	transition-property: all;
 	transition-duration: 0.25s;
 	transition-timing-function: ease-in;
@@ -49,4 +49,5 @@
 .main__image--product:hover {
 	cursor: pointer;
 	width: 85%;
+	border-radius: 1rem;
 }

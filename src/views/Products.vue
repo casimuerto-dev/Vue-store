@@ -12,6 +12,15 @@ import Layout from '../components/Layout.vue';
 							<p class="main__text--normal">
 								This product is amazing because this and this and that
 							</p>
+							<span
+								title="Add to cart"
+								:class="{
+									'material-symbols-outlined': true,
+									main__add: true,
+								}"
+							>
+								add_circle
+							</span>
 						</div>
 					</Transition>
 				</div>
@@ -54,6 +63,25 @@ onMounted(() => {
 	max-width: 500px;
 }
 
+.main__add {
+	color: var(--secondary-color);
+	font-size: 2vw;
+}
+.main__add:hover {
+	cursor: pointer;
+	color: var(--hover-color);
+}
+
+.main__add:hover::after {
+	content: "Add to cart";
+	color: var(--active-color);
+	position: absolute;
+	top: -100%;
+	left: 0;
+}
+.main__add:active {
+	height: 1rem;
+}
 .context__wrapper {
 	display: flex;
 	flex-direction: column;
