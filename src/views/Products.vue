@@ -5,7 +5,7 @@ import Layout from '../components/Layout.vue';
 		<main class="main">
 			<p class="main__text">The best selection to be the envy of your peers!</p>
 			<div class="main__display">
-				<div class="main__item" v-for="element in NumbersArray">
+				<div class="main__item" v-for="element in NumbersArray" :key="element.key">
 					<Transition name="fade" v-show="showProducts">
 						<div class="context__wrapper">
 							<img class="main__image--product" :src="element.url" />
@@ -26,20 +26,29 @@ import Layout from '../components/Layout.vue';
 				</div>
 			</div>
 		</main>
+		<p>count= {{ counter.count }}</p>
+		<button @click="handleAdd">add 1</button>
 	</Layout>
 </template>
 <script setup>
 import Layout from "../components/Layout.vue";
 import { ref, onMounted } from "vue";
+import { useCounterStore } from "../stores/counter";
 
+const counter = useCounterStore();
 const showProducts = ref(false);
 const NumbersArray = ref(Array(40).fill(0));
 
 NumbersArray.value.forEach((element, index) => {
 	NumbersArray.value.splice(index, 1, {
 		url: `https://picsum.photos/seed/${index + 1}/300/300`,
+		key: index + 1,
 	});
 });
+
+const handleAdd = () => {
+	counter.increment();
+};
 
 onMounted(() => {
 	showProducts.value = true;

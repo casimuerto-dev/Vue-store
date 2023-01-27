@@ -1,12 +1,14 @@
 <template>
 	<header class="header">
-		<img
-			class="header__image"
-			src="../assets/mainBanner.png"
-			alt="welcome to Casimuerto's Fun!"
-		/>
+		<RouterLink to="/">
+			<img
+				class="header__image"
+				src="../assets/mainBanner.png"
+				alt="welcome to Casimuerto's Fun!"
+			/>
+		</RouterLink>
 	</header>
-
+	<p>cart={{ counter.count }}</p>
 	<slot></slot>
 
 	<footer class="footer">
@@ -28,7 +30,11 @@
 		</div>
 	</footer>
 </template>
+<script setup>
+import { useCounterStore } from "../stores/counter";
 
+const counter = useCounterStore();
+</script>
 <style scoped>
 .header {
 	display: flex;
