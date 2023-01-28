@@ -7,8 +7,15 @@
 				alt="welcome to Casimuerto's Fun!"
 			/>
 		</RouterLink>
+		<div class="menu" ref="menu">
+			<button class="menu__button" @click="handlePush('products')">
+				Products
+			</button>
+
+			<button class="menu__button" @click="handlePush">Other Stuff</button>
+			<button class="menu__button" @click="handlePush">About us</button>
+		</div>
 	</header>
-	<p>cart={{ counter.count }}</p>
 	<slot></slot>
 
 	<footer class="footer">
@@ -30,11 +37,16 @@
 		</div>
 	</footer>
 </template>
-<script setup>
-import { useCounterStore } from "../stores/counter";
 
-const counter = useCounterStore();
+<script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const handlePush = (route) => {
+	router.push(route);
+};
 </script>
+
 <style scoped>
 .header {
 	display: flex;
@@ -43,6 +55,7 @@ const counter = useCounterStore();
 	width: 100%;
 	max-width: 100%;
 	margin-bottom: 1px;
+	background-color: rgba(172, 28, 175);
 }
 .header__image {
 	width: 100%;
@@ -83,5 +96,38 @@ const counter = useCounterStore();
 	.footer__info {
 		align-items: center;
 	}
+}
+
+.menu {
+	display: flex;
+	justify-content: space-between;
+	column-gap: 10px;
+	margin-bottom: 10px;
+	padding: 0 5px;
+}
+.is-pinned .menu__button {
+	color: white;
+}
+.menu__button {
+	background-color: rgba(255, 0, 0, 0);
+	outline: none;
+	border: none;
+	flex: 1;
+	height: 2rem;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	font-size: 15px;
+	font-family: var(--normal-font);
+	font-style: italic;
+	transition: all 0.2s ease;
+}
+.menu__button:hover {
+	background-color: var(--hover-color);
+	cursor: pointer;
+}
+
+.menu__button:active {
+	background-color: var(--active-color);
 }
 </style>

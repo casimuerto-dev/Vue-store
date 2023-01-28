@@ -2,14 +2,7 @@
 	<Layout>
 		<main class="main">
 			<p class="main__text">Welcome</p>
-			<div class="menu" ref="menu">
-				<button class="menu__button" @click="handlePush('products')">
-					Products
-				</button>
 
-				<button class="menu__button" @click="handlePush">Other Stuff</button>
-				<button class="menu__button" @click="handlePush">About us</button>
-			</div>
 			<img
 				class="main__image--presentation"
 				src="../assets/toyota-supra-modified.jpg"
@@ -30,6 +23,7 @@
 					</span>
 					<TransitionGroup name="imageReel">
 						<div
+							class="main__imageReel-wrapper"
 							v-for="(el, index) in randomNumbers"
 							v-show="currentImage === index"
 							:key="index"
@@ -88,32 +82,19 @@
 <script setup>
 import { ref, onBeforeMount, onMounted, watch } from "vue";
 import Layout from "../components/Layout.vue";
-import { useRouter } from "vue-router";
 
 const menu = ref(null);
-const router = useRouter();
 onBeforeMount(() => {
 	randomNumbers.value.forEach((el, index) => {
 		randomNumbers.value[index] = Math.floor(Math.random() * 100 + 1);
 	});
 });
-onMounted(() => {
-	console.log(menu.value);
-	const observer = new IntersectionObserver(
-		([e]) => e.target.classList.toggle("is-pinned", e.intersectionRatio < 1),
-		{ threshold: [1] }
-	);
 
-	observer.observe(menu.value);
-});
 const randomNumbers = ref([1, 2, 6, 4, 5]);
 const currentImage = ref(0);
 const backDisabled = ref(true);
 const nextDisabled = ref(false);
 
-const handlePush = (route) => {
-	router.push(route);
-};
 const handleClick = (direction) => {
 	if (direction === "next") {
 		if (currentImage.value < 4) {
@@ -138,39 +119,6 @@ watch(currentImage, (newVal, oldVal) => {
 	width: 100%;
 	margin: 10px 0;
 	border-radius: 2px;
-}
-
-.menu {
-	display: flex;
-	justify-content: space-between;
-	column-gap: 10px;
-	margin-bottom: 10px;
-	/* position: sticky;
-	top: -1px; */
-}
-.is-pinned .menu__button {
-	color: white;
-}
-.menu__button {
-	background-color: var(--secondary-color);
-	outline: none;
-	border: none;
-	flex: 1;
-	height: 2rem;
-	border-radius: 5px;
-	color: white;
-	font-size: 15px;
-	font-family: var(--normal-font);
-	font-style: italic;
-	transition: all 0.2s ease;
-}
-.menu__button:hover {
-	background-color: var(--hover-color);
-	cursor: pointer;
-}
-
-.menu__button:active {
-	background-color: var(--active-color);
 }
 
 .main__latest {
@@ -227,6 +175,12 @@ watch(currentImage, (newVal, oldVal) => {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	align-items: center;
+}
+.main__imageReel-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 }
 
