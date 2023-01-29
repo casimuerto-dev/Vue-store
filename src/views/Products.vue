@@ -12,7 +12,7 @@ import Layout from '../components/Layout.vue';
 				<div class="main__item" v-for="element in NumbersArray" :key="element.key">
 					<Transition name="fade" v-show="showProducts">
 						<div class="context__wrapper">
-							<p class="main__textmain__text--modified">Product {{ element.name }}</p>
+							<p class="main__text main__text--modified">Product {{ element.name }}</p>
 							<img class="main__image--product" :src="element.url" />
 							<p class="main__text--normal">
 								This product is amazing because this and this and that
