@@ -2,12 +2,17 @@ import Layout from '../components/Layout.vue';
 
 <template>
 	<Layout>
+		<div>
+			<span class="material-symbols-outlined"> shopping_cart </span>
+			<p>{{ cart.storedItems.count }}</p>
+		</div>
 		<main class="main">
 			<p class="main__text">The best selection to be the envy of your peers!</p>
 			<div class="main__display">
 				<div class="main__item" v-for="element in NumbersArray" :key="element.key">
 					<Transition name="fade" v-show="showProducts">
 						<div class="context__wrapper">
+							<p class="main__textmain__text--modified">Product {{ element.name }}</p>
 							<img class="main__image--product" :src="element.url" />
 							<p class="main__text--normal">
 								This product is amazing because this and this and that
@@ -18,6 +23,7 @@ import Layout from '../components/Layout.vue';
 									'material-symbols-outlined': true,
 									main__add: true,
 								}"
+								@click="handleAdd(element.name)"
 							>
 								add_circle
 							</span>
@@ -26,16 +32,14 @@ import Layout from '../components/Layout.vue';
 				</div>
 			</div>
 		</main>
-		<p>count= {{ counter.count }}</p>
-		<button @click="handleAdd">add 1</button>
 	</Layout>
 </template>
 <script setup>
 import Layout from "../components/Layout.vue";
 import { ref, onMounted } from "vue";
-import { useCounterStore } from "../stores/counter";
+import { useCartStore } from "../stores/cart";
 
-const counter = useCounterStore();
+const cart = useCartStore();
 const showProducts = ref(false);
 const NumbersArray = ref(Array(40).fill(0));
 
@@ -43,11 +47,12 @@ NumbersArray.value.forEach((element, index) => {
 	NumbersArray.value.splice(index, 1, {
 		url: `https://picsum.photos/seed/${index + 1}/300/300`,
 		key: index + 1,
+		name: index + 1,
 	});
 });
 
-const handleAdd = () => {
-	counter.increment();
+const handleAdd = (name) => {
+	cart.increment(name);
 };
 
 onMounted(() => {
@@ -81,15 +86,8 @@ onMounted(() => {
 	color: var(--hover-color);
 }
 
-.main__add:hover::after {
-	content: "Add to cart";
-	color: var(--active-color);
-	position: absolute;
-	top: -100%;
-	left: 0;
-}
 .main__add:active {
-	height: 1rem;
+	color: var(--active-color);
 }
 .context__wrapper {
 	display: flex;

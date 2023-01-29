@@ -130,13 +130,6 @@ watch(currentImage, (newVal, oldVal) => {
 	align-items: center;
 }
 
-.main__text--modified {
-	position: static;
-	background-color: var(--secondary-color);
-	width: 80%;
-	z-index: 2;
-}
-
 .main__arrow--button {
 	font-size: 10vw;
 }
