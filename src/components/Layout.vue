@@ -14,6 +14,25 @@
 
 			<button class="menu__button" @click="handlePush">Other Stuff</button>
 			<button class="menu__button" @click="handlePush">About us</button>
+			<div class="shopping-cart__wrapper">
+				<span
+					:class="{
+						'material-symbols-outlined': true,
+						'shopping-cart__icon': true,
+						'contains-items': cart.storedItems.count,
+					}"
+				>
+					shopping_cart
+				</span>
+				<p
+					:class="{
+						'shopping-cart__count': true,
+						'contains-items': cart.storedItems.count,
+					}"
+				>
+					{{ cart.storedItems.count }}
+				</p>
+			</div>
 		</div>
 	</header>
 	<slot></slot>
@@ -40,6 +59,9 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { useCartStore } from "../stores/cart";
+
+const cart = useCartStore();
 
 const router = useRouter();
 const handlePush = (route) => {
@@ -59,6 +81,69 @@ const handlePush = (route) => {
 }
 .header__image {
 	width: 100%;
+}
+
+.menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: 10px;
+	padding: 0 4px 5px;
+}
+.is-pinned .menu__button {
+	color: white;
+}
+.menu__button {
+	background-color: rgba(255, 0, 0, 0);
+	outline: none;
+	border: none;
+	flex: 1;
+	height: 2rem;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	font-size: 15px;
+	font-family: var(--normal-font);
+	font-style: italic;
+	transition: all 0.2s ease;
+}
+.menu__button:hover {
+	background-color: var(--hover-color);
+	cursor: pointer;
+}
+
+.menu__button:active {
+	background-color: var(--active-color);
+}
+.shopping-cart__wrapper {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	border-radius: 20%;
+	padding: 5px;
+}
+
+.shopping-cart__wrapper:hover {
+	background-color: white;
+}
+.shopping-cart__wrapper:hover .shopping-cart__icon,
+.shopping-cart__wrapper:hover .shopping-cart__count {
+	color: var(--hover-color);
+}
+
+.contains-items {
+	color: white;
+}
+
+.shopping-cart__icon:hover {
+	cursor: pointer;
+}
+.shopping-cart__count {
+	font-family: cursive;
+	margin: 0;
+}
+.shopping-cart__count:hover {
+	cursor: pointer;
 }
 .footer {
 	display: flex;
@@ -96,38 +181,5 @@ const handlePush = (route) => {
 	.footer__info {
 		align-items: center;
 	}
-}
-
-.menu {
-	display: flex;
-	justify-content: space-between;
-	column-gap: 10px;
-	margin-bottom: 10px;
-	padding: 0 5px;
-}
-.is-pinned .menu__button {
-	color: white;
-}
-.menu__button {
-	background-color: rgba(255, 0, 0, 0);
-	outline: none;
-	border: none;
-	flex: 1;
-	height: 2rem;
-	border: 1px solid white;
-	border-radius: 5px;
-	color: white;
-	font-size: 15px;
-	font-family: var(--normal-font);
-	font-style: italic;
-	transition: all 0.2s ease;
-}
-.menu__button:hover {
-	background-color: var(--hover-color);
-	cursor: pointer;
-}
-
-.menu__button:active {
-	background-color: var(--active-color);
 }
 </style>

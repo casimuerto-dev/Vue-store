@@ -1,7 +1,7 @@
 <template>
 	<Layout>
 		<main class="main">
-			<p class="main__text">Welcome</p>
+			<!-- <p class="main__text">Welcome</p> -->
 
 			<img
 				class="main__image--presentation"

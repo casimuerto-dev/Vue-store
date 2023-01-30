@@ -2,10 +2,6 @@ import Layout from '../components/Layout.vue';
 
 <template>
 	<Layout>
-		<div>
-			<span class="material-symbols-outlined"> shopping_cart </span>
-			<p>{{ cart.storedItems.count }}</p>
-		</div>
 		<main class="main">
 			<p class="main__text">The best selection to be the envy of your peers!</p>
 			<div class="main__display">
@@ -79,7 +75,7 @@ onMounted(() => {
 
 .main__add {
 	color: var(--secondary-color);
-	font-size: 2vw;
+	font-size: 30px;
 }
 .main__add:hover {
 	cursor: pointer;
