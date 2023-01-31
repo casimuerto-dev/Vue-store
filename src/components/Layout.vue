@@ -14,7 +14,7 @@
 
 			<button class="menu__button" @click="handlePush">Other Stuff</button>
 			<button class="menu__button" @click="handlePush">About us</button>
-			<div class="shopping-cart__wrapper">
+			<div class="shopping-cart__wrapper" v-show="cart.storedItems.count">
 				<span
 					:class="{
 						'material-symbols-outlined': true,
@@ -65,7 +65,7 @@ const cart = useCartStore();
 
 const router = useRouter();
 const handlePush = (route) => {
-	router.push(route);
+	router.push(`/${route}`);
 };
 </script>
 
@@ -125,6 +125,7 @@ const handlePush = (route) => {
 
 .shopping-cart__wrapper:hover {
 	background-color: white;
+	cursor: pointer;
 }
 .shopping-cart__wrapper:hover .shopping-cart__icon,
 .shopping-cart__wrapper:hover .shopping-cart__count {
@@ -135,15 +136,9 @@ const handlePush = (route) => {
 	color: white;
 }
 
-.shopping-cart__icon:hover {
-	cursor: pointer;
-}
 .shopping-cart__count {
 	font-family: cursive;
 	margin: 0;
-}
-.shopping-cart__count:hover {
-	cursor: pointer;
 }
 .footer {
 	display: flex;
@@ -151,6 +146,7 @@ const handlePush = (route) => {
 	color: white;
 	justify-content: space-around;
 	margin-top: 115px;
+	bottom: 0px;
 }
 
 .footer__info {

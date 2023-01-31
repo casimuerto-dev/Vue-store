@@ -9,7 +9,11 @@ import Layout from '../components/Layout.vue';
 					<Transition name="fade" v-show="showProducts">
 						<div class="context__wrapper">
 							<p class="main__text main__text--modified">Product {{ element.name }}</p>
-							<img class="main__image--product" :src="element.url" />
+							<img
+								class="main__image--product"
+								:src="element.url"
+								@click="handlePush(element.name)"
+							/>
 							<p class="main__text--normal">
 								This product is amazing because this and this and that
 							</p>
@@ -34,7 +38,9 @@ import Layout from '../components/Layout.vue';
 import Layout from "../components/Layout.vue";
 import { ref, onMounted } from "vue";
 import { useCartStore } from "../stores/cart";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const cart = useCartStore();
 const showProducts = ref(false);
 const NumbersArray = ref(Array(40).fill(0));
@@ -49,6 +55,10 @@ NumbersArray.value.forEach((element, index) => {
 
 const handleAdd = (name) => {
 	cart.increment(name);
+};
+
+const handlePush = (name) => {
+	router.push(`/details/${name}`);
 };
 
 onMounted(() => {
