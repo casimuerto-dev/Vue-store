@@ -164,12 +164,6 @@ watch(currentImage, (newVal, oldVal) => {
 	margin-top: 20px;
 }
 
-.main__wrapper {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-}
 .main__imageReel-wrapper {
 	display: flex;
 	flex-direction: column;

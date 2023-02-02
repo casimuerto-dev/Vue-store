@@ -101,14 +101,4 @@ onMounted(() => {
 	align-items: center;
 	justify-content: center;
 }
-
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 1s ease-in;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
-}
 </style>

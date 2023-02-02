@@ -16,7 +16,12 @@
 .main {
 	padding: 5px;
 }
-
+.main__wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
 .main__text {
 	width: 100%;
 	font-family: var(--main-font);
@@ -45,7 +50,6 @@
 
 .main__image--product {
 	width: 80%;
-
 	border-radius: 50%;
 	transition-property: all;
 	transition-duration: 0.25s;
@@ -57,4 +61,14 @@
 	cursor: pointer;
 	width: 85%;
 	border-radius: 1rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+	transition: opacity 1s ease-in;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+	opacity: 0;
 }
