@@ -57,6 +57,7 @@ console.log(route.params);
 
 .main__image--product-D {
 	border-radius: 20%;
+	transition: all 1s ease-in;
 }
 
 .main__text--details {
@@ -66,7 +67,23 @@ console.log(route.params);
 .imageLoader {
 	height: 350px;
 	width: 350px;
-	background-color: lightgrey;
+	background-size: 10px;
+	background: linear-gradient(90deg, lightgrey 40%, white, lightgrey 60%);
 	border-radius: 20%;
+	animation-name: movingBackground;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-fill-mode: forwards;
+}
+
+@keyframes movingBackground {
+	from {
+		background-position: -175px;
+	}
+
+	to {
+		background-position: 175px;
+	}
 }
 </style>
