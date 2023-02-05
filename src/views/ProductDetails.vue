@@ -4,17 +4,19 @@ import Layout from '../components/Layout.vue';
 	<Layout>
 		<div class="main">
 			<div class="main__column--left">
-				<Transition name="fade">
+				<Transition name="fade" v-show="displayDiv">
 					<div class="main__wrapper">
 						<p class="main__text main__text--modified">
 							Product {{ route.params.name }}
 						</p>
 						<div class="imageLoader" v-show="!displayImage"></div>
+
 						<img
 							class="main__image--product-D"
 							:src="`https://picsum.photos/seed/${route.params.name}/350/350`"
 							@load="displayImage = true"
 						/>
+
 						<p class="main__text--normal">Description of the product</p>
 						<p class="main__text--normal">
 							This product is amazing because this and this and that
@@ -33,6 +35,14 @@ import Layout from '../components/Layout.vue';
 					way the world defines products.<br />
 					Get yours now!
 				</p>
+				<p class="main__text--details">Perks of this product:</p>
+				<ul>
+					<li class="main__text--details">Warranty: 2 days!</li>
+					<li class="main__text--details">Design: Beautiful colors</li>
+					<li class="main__text--details">
+						Accessories: Comes with everything you see!
+					</li>
+				</ul>
 			</div>
 		</div>
 	</Layout>
@@ -43,7 +53,13 @@ import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
 const route = useRoute();
 const displayImage = ref(false);
+const displayDiv = ref(false);
 console.log(route.params);
+
+onMounted(() => {
+	window.scrollTo(0, 70);
+	displayDiv.value = true;
+});
 </script>
 <style scoped>
 .main {
@@ -55,9 +71,18 @@ console.log(route.params);
 	width: 50%;
 }
 
+.main__text {
+	margin-top: 30px;
+}
+
 .main__image--product-D {
 	border-radius: 20%;
 	transition: all 1s ease-in;
+	animation-name: appear;
+	animation-duration: 1s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
 }
 
 .main__text--details {
@@ -75,6 +100,15 @@ console.log(route.params);
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 
 @keyframes movingBackground {
