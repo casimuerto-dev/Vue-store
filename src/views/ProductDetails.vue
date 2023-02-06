@@ -35,6 +35,7 @@ import Layout from '../components/Layout.vue';
 					way the world defines products.<br />
 					Get yours now!
 				</p>
+
 				<p class="main__text--details">Perks of this product:</p>
 				<ul>
 					<li class="main__text--details">Warranty: 2 days!</li>
@@ -43,6 +44,12 @@ import Layout from '../components/Layout.vue';
 						Accessories: Comes with everything you see!
 					</li>
 				</ul>
+				<div class="main__actions">
+					<button @click="handleClick('-')">-</button>
+					<span>{{ count }}</span>
+					<button @click="handleClick('+')">+</button>
+					<button @click="handleAdd">add to cart</button>
+				</div>
 			</div>
 		</div>
 	</Layout>
@@ -51,11 +58,24 @@ import Layout from '../components/Layout.vue';
 import Layout from "../components/Layout.vue";
 import { useRoute } from "vue-router";
 import { ref, onMounted } from "vue";
+import { useCartStore } from "../stores/cart";
+const cart = useCartStore();
 const route = useRoute();
 const displayImage = ref(false);
 const displayDiv = ref(false);
+const count = ref(1);
 console.log(route.params);
 
+const handleClick = (action) => {
+	if (action === "+" && count.value < 10) {
+		count.value += 1;
+	} else if (action === "-" && count.value > 1) {
+		count.value -= 1;
+	}
+};
+const handleAdd = () => {
+	cart.increment(route.params.name, count.value);
+};
 onMounted(() => {
 	window.scrollTo(0, 70);
 	displayDiv.value = true;
@@ -75,6 +95,10 @@ onMounted(() => {
 	margin-top: 30px;
 }
 
+.main__actions {
+	text-align: center;
+}
+
 .main__image--product-D {
 	border-radius: 20%;
 	transition: all 1s ease-in;
@@ -87,6 +111,7 @@ onMounted(() => {
 
 .main__text--details {
 	font-family: var(--main-font);
+	line-height: 26px;
 }
 
 .imageLoader {
