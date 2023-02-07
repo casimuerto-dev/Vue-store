@@ -25,30 +25,34 @@ import Layout from '../components/Layout.vue';
 				</Transition>
 			</div>
 			<div class="main__column--right">
-				<h2 class="main__text" style="background-color: black; position: relative">
-					Product Details
-				</h2>
+				<div class="main__wrapper--right">
+					<h2 class="main__text" style="background-color: black; position: relative">
+						Product Details
+					</h2>
 
-				<p class="main__text--details">
-					This product will blow your mind!<br />
-					This is the acclaimed product {{ route.params.name }} that has changed the
-					way the world defines products.<br />
-					Get yours now!
-				</p>
+					<p class="main__text--details">
+						This product will blow your mind!<br />
+						This is the acclaimed product {{ route.params.name }} that has changed the
+						way the world defines products.<br />
+						Get yours now!
+					</p>
 
-				<p class="main__text--details">Perks of this product:</p>
-				<ul>
-					<li class="main__text--details">Warranty: 2 days!</li>
-					<li class="main__text--details">Design: Beautiful colors</li>
-					<li class="main__text--details">
-						Accessories: Comes with everything you see!
-					</li>
-				</ul>
+					<p class="main__text--details">Perks of this product:</p>
+					<ul>
+						<li class="main__text--details">Warranty: 2 days!</li>
+						<li class="main__text--details">Design: Beautiful colors</li>
+						<li class="main__text--details">
+							Accessories: Comes with everything you see!
+						</li>
+					</ul>
+				</div>
 				<div class="main__actions">
-					<button @click="handleClick('-')">-</button>
-					<span>{{ count }}</span>
-					<button @click="handleClick('+')">+</button>
-					<button @click="handleAdd">add to cart</button>
+					<button class="main__actions--button" @click="handleClick('-')">-</button>
+					<button class="main__actions--button" @click="handleClick('+')">+</button>
+					<p class="main__actions--count">{{ count }}</p>
+					<button class="main__actions--button" @click="handleAdd">
+						Add to cart!
+					</button>
 				</div>
 			</div>
 		</div>
@@ -89,6 +93,13 @@ onMounted(() => {
 
 .main__column--right {
 	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.main__wrapper--right {
+	justify-content: flex-start;
 }
 
 .main__text {
@@ -97,6 +108,10 @@ onMounted(() => {
 
 .main__actions {
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 30px;
 }
 
 .main__image--product-D {
@@ -144,5 +159,24 @@ onMounted(() => {
 	to {
 		background-position: 175px;
 	}
+}
+
+.main__actions--button {
+	font-family: var(--main-font);
+	font-size: 20px;
+	color: white;
+	background-color: var(--main-color);
+	border: 1px solid black;
+	cursor: pointer;
+	margin: 0 5px;
+}
+
+.main__actions--count {
+	margin: 0 10px;
+	border: 1px solid black;
+	border-radius: 2px;
+	width: 20px;
+	line-height: 27px;
+	font-family: var(--normal-font);
 }
 </style>
