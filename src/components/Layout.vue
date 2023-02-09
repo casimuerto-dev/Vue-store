@@ -14,7 +14,11 @@
 
 			<button class="menu__button" @click="handlePush">Other Stuff</button>
 			<button class="menu__button" @click="handlePush">About us</button>
-			<div class="shopping-cart__wrapper" v-show="cart.storedItems.count">
+			<div
+				class="shopping-cart__wrapper"
+				v-show="cart.storedItems.count"
+				@click="handlePush('cart')"
+			>
 				<span
 					:class="{
 						'material-symbols-outlined': true,

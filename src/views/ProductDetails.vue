@@ -32,8 +32,11 @@ import Layout from '../components/Layout.vue';
 
 					<p class="main__text--details">
 						This product will blow your mind!<br />
-						This is the acclaimed product {{ route.params.name }} that has changed the
-						way the world defines products.<br />
+						This is the acclaimed
+						<span style="text-decoration: underline"
+							>Product {{ route.params.name }}</span
+						>
+						that has changed the way the world defines products.<br />
 						Get yours now!
 					</p>
 
@@ -81,7 +84,7 @@ const handleAdd = () => {
 	cart.increment(route.params.name, count.value);
 };
 onMounted(() => {
-	window.scrollTo(0, 70);
+	window.scrollTo(0, 170);
 	displayDiv.value = true;
 });
 </script>
