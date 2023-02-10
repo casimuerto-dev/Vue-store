@@ -19,5 +19,22 @@ export const useCartStore = defineStore("cart", () => {
 		console.log("store:", storedItems.value);
 	}
 
-	return { storedItems, increment };
+	function decrement(name) {
+		console.log("decrement");
+		if (storedItems.value.items.hasOwnProperty(name)) {
+			console.log("exists");
+			if (storedItems.value.items[name].amount > 1) {
+				console.log("can be decreased");
+				storedItems.value.items[name].amount -= 1;
+				storedItems.value.count = storedItems.value.count - 1;
+				console.log("store:", storedItems.value);
+			} else {
+				console.log("can't be decreased");
+			}
+		} else {
+			console.log("does not exist");
+		}
+	}
+
+	return { storedItems, increment, decrement };
 });

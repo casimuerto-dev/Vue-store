@@ -2,7 +2,11 @@
 	<Layout>
 		<div class="cart">
 			<div class="cart__left--column">
-				<ProductSummary v-for="items in ItemsInCart" />
+				<ProductSummary
+					v-for="(item, name) in ItemsInCart.items"
+					:name="name"
+					:amount="item.amount"
+				/>
 			</div>
 			<div class="cart__right--column">asd</div>
 		</div>
@@ -16,7 +20,7 @@ import { ref } from "vue";
 import { useCartStore } from "../stores/cart";
 const cart = useCartStore();
 const ItemsInCart = ref();
-ItemsInCart.value = cart.storedItems.items;
+ItemsInCart.value = cart.storedItems;
 console.log(ItemsInCart.value);
 </script>
 <style scoped>
