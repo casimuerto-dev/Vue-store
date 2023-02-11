@@ -127,11 +127,6 @@ onMounted(() => {
 	animation-fill-mode: forwards;
 }
 
-.main__text--details {
-	font-family: var(--main-font);
-	line-height: 26px;
-}
-
 .imageLoader {
 	height: 350px;
 	width: 350px;
