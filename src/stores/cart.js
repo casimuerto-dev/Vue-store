@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", () => {
 	const storedItems = ref({ count: 0, items: {} });
+	const cantDeleteMore = ref(false);
 
 	function increment(name, amountToAdd) {
 		console.log("increment");
@@ -16,6 +17,9 @@ export const useCartStore = defineStore("cart", () => {
 		}
 
 		storedItems.value.count = storedItems.value.count + (amountToAdd || 1);
+		if (storedItems.value.count > 1) {
+			cantDeleteMore.value = false;
+		}
 		console.log("store:", storedItems.value);
 	}
 
@@ -30,11 +34,29 @@ export const useCartStore = defineStore("cart", () => {
 				console.log("store:", storedItems.value);
 			} else {
 				console.log("can't be decreased");
+				if (storedItems.value.count === 1) {
+					cantDeleteMore.value = true;
+				}
 			}
 		} else {
 			console.log("does not exist");
 		}
 	}
 
-	return { storedItems, increment, decrement };
+	const deleteItem = (name) => {
+		console.log("delete");
+		if (
+			storedItems.value.count > 1 &&
+			Object.keys(storedItems.value.items).length > 1
+		) {
+			console.log("more than 1");
+			storedItems.value.count =
+				storedItems.value.count - storedItems.value.items[name].amount;
+			delete storedItems.value.items[name];
+		} else {
+			cantDeleteMore.value = true;
+		}
+	};
+
+	return { storedItems, increment, decrement, deleteItem, cantDeleteMore };
 });

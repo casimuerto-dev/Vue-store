@@ -8,11 +8,20 @@
 		<div class="summary__details">
 			<p class="main__text--details">Porduct name</p>
 			<p class="main__text--details">amount: {{ props.amount }}</p>
+
 			<div class="actions">
 				<button @click="cart.decrement(props.name)">less</button>
 				<button @click="cart.increment(props.name)">more</button>
-				<button>delete</button>
+				<button @click="cart.deleteItem(props.name)">delete</button>
 			</div>
+			<p
+				class="main__text--details"
+				style="color: red; font-size: 11px; margin-top: 5px; line-height: 11px"
+				v-if="cart.cantDeleteMore"
+			>
+				There should be at least <br />
+				one item on the cart
+			</p>
 		</div>
 	</div>
 </template>
