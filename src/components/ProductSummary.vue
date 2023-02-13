@@ -9,10 +9,19 @@
 			<p class="main__text--details">Porduct name</p>
 			<p class="main__text--details">amount: {{ props.amount }}</p>
 
-			<div class="actions">
-				<button @click="cart.decrement(props.name)">less</button>
-				<button @click="cart.increment(props.name)">more</button>
-				<button @click="cart.deleteItem(props.name)">delete</button>
+			<div class="summary__actions">
+				<button
+					:class="{ summary__buttons: true, disabled: props.amount < 2 }"
+					@click="cart.decrement(props.name)"
+				>
+					Less
+				</button>
+				<button class="summary__buttons" @click="cart.increment(props.name)">
+					More
+				</button>
+				<button class="summary__buttons" @click="cart.deleteItem(props.name)">
+					Delete
+				</button>
 			</div>
 			<p
 				class="main__text--details"
@@ -60,6 +69,35 @@ const handlePush = (name) => {
 	justify-content: center;
 }
 
+.summary__buttons {
+	background-color: var(--active-color);
+	color: white;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 5px 5px 10px lightgray;
+	margin: 0 2px;
+	cursor: pointer;
+	font-size: 15px;
+	padding: 8px;
+}
+
+.summary__buttons:hover {
+	background-color: var(--hover-color);
+	box-shadow: 5px 5px 10px gray;
+}
+
+.summary__buttons:active {
+	background-color: black;
+}
+
+.disabled {
+	background-color: lightgray !important;
+	color: rgb(155, 149, 149) !important;
+}
+.disabled:hover {
+	box-shadow: none;
+	box-shadow: 5px 5px 10px lightgray !important;
+}
 .main__text--details {
 	margin: 0;
 }

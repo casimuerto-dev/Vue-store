@@ -34,9 +34,6 @@ export const useCartStore = defineStore("cart", () => {
 				console.log("store:", storedItems.value);
 			} else {
 				console.log("can't be decreased");
-				if (storedItems.value.count === 1) {
-					cantDeleteMore.value = true;
-				}
 			}
 		} else {
 			console.log("does not exist");
@@ -55,6 +52,9 @@ export const useCartStore = defineStore("cart", () => {
 			delete storedItems.value.items[name];
 		} else {
 			cantDeleteMore.value = true;
+			setTimeout(() => {
+				cantDeleteMore.value = false;
+			}, 2000);
 		}
 	};
 
