@@ -51,6 +51,14 @@
 	font-family: var(--main-font);
 	line-height: 26px;
 }
+
+.main__text--price {
+	text-align: center;
+	margin-top: 60px;
+	font-size: 25px;
+	font-family: var(--normal-font);
+}
+
 .main__image--product {
 	width: 80%;
 	border-radius: 50%;

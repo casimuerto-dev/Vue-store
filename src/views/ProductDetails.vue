@@ -48,6 +48,14 @@ import Layout from '../components/Layout.vue';
 							Accessories: Comes with everything you see!
 						</li>
 					</ul>
+
+					<p class="main__text--price">
+						${{
+							parseInt(route.params.name) > 10
+								? parseInt(route.params.name) + 10
+								: parseInt(route.params.name) + 20
+						}}.<span style="font-size: 14px">99</span>
+					</p>
 				</div>
 				<div class="main__actions">
 					<button class="main__actions--button" @click="handleClick('-')">-</button>
@@ -71,7 +79,8 @@ const route = useRoute();
 const displayImage = ref(false);
 const displayDiv = ref(false);
 const count = ref(1);
-console.log(route.params);
+
+console.log(route.params.name);
 
 const handleClick = (action) => {
 	if (action === "+" && count.value < 10) {
