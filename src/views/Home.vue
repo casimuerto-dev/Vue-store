@@ -31,6 +31,7 @@
 							<img
 								class="main__image"
 								:src="`https://picsum.photos/seed/${el}/300/300`"
+								@click="handleRedirect(el)"
 							/>
 							<p class="main__text--normal">
 								This product is amazing because this and this and that
@@ -56,7 +57,8 @@
 					<p class="main__text main__text--modified">Product 1!</p>
 					<img
 						class="main__image--product"
-						src="https://picsum.photos/seed/also/300/300"
+						:src="`https://picsum.photos/seed/${1}/300/300`"
+						@click="handleRedirect(1)"
 					/>
 					<p class="main__text--normal">Description of the product</p>
 					<p class="main__text--normal">
@@ -68,7 +70,8 @@
 
 					<img
 						class="main__image--product"
-						src="https://picsum.photos/seed/makia/300/300"
+						:src="`https://picsum.photos/seed/${2}/300/300`"
+						@click="handleRedirect(2)"
 					/>
 					<p class="main__text--normal">Description of the product</p>
 					<p class="main__text--normal">
@@ -80,16 +83,16 @@
 	</Layout>
 </template>
 <script setup>
-import { ref, onBeforeMount, onMounted, watch } from "vue";
+import { ref, onBeforeMount, watch } from "vue";
 import Layout from "../components/Layout.vue";
+import { useRouter } from "vue-router";
 
-const menu = ref(null);
 onBeforeMount(() => {
 	randomNumbers.value.forEach((el, index) => {
-		randomNumbers.value[index] = Math.floor(Math.random() * 100 + 1);
+		randomNumbers.value[index] = Math.floor(Math.random() * 40 + 1);
 	});
 });
-
+const router = useRouter();
 const randomNumbers = ref([1, 2, 6, 4, 5]);
 const currentImage = ref(0);
 const backDisabled = ref(true);
@@ -106,6 +109,10 @@ const handleClick = (direction) => {
 			currentImage.value -= 1;
 		}
 	}
+};
+
+const handleRedirect = (name) => {
+	router.push(`/details/${name}`);
 };
 watch(currentImage, (newVal, oldVal) => {
 	if (newVal === 0) backDisabled.value = true;
@@ -156,6 +163,7 @@ watch(currentImage, (newVal, oldVal) => {
 	margin: 20px;
 	max-width: 300px;
 	border-radius: 20px;
+	cursor: pointer;
 }
 
 .main__products {
