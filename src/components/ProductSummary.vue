@@ -6,9 +6,11 @@
 			:src="`https://picsum.photos/seed/${props.name}/150/150`"
 		/>
 		<div class="summary__details">
-			<p class="main__text--details">Porduct name</p>
+			<p class="main__text--details">Porduct {{ props.name }}</p>
 			<p class="main__text--details">amount: {{ props.amount }}</p>
-
+			<p class="main__text--details">
+				Price per unit: {{ cart.storedItems.items[props.name].price }}
+			</p>
 			<div class="summary__actions">
 				<button
 					:class="{ summary__buttons: true, disabled: props.amount < 2 }"

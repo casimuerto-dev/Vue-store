@@ -80,7 +80,7 @@ const displayImage = ref(false);
 const displayDiv = ref(false);
 const count = ref(1);
 
-console.log(route.params.name);
+console.log("product-name:", route.params.name);
 
 const handleClick = (action) => {
 	if (action === "+" && count.value < 10) {
