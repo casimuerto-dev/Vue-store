@@ -47,5 +47,6 @@ console.log(ItemsInCart.value);
 	border-radius: 10px;
 	box-shadow: 5px 5px 10px gray;
 	flex-basis: 40%;
+	height: auto;
 }
 </style>

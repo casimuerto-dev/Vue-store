@@ -11,7 +11,10 @@ export const useCartStore = defineStore("cart", () => {
 			console.log("does not exist");
 			storedItems.value.items[name] = {
 				amount: amountToAdd || 1,
-				price: name > 10 ? parseInt(name) + 10.99 : parseInt(name) + 20.99,
+				price:
+					name > 10
+						? parseFloat(parseInt(name) + 10.99).toFixed(2)
+						: parseFloat(parseInt(name) + 20.99).toFixed(2),
 			};
 		} else {
 			console.log("does exist");
