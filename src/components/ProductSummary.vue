@@ -44,7 +44,6 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 const cart = useCartStore();
 const props = defineProps(["name", "amount"]);
-console.log("props", props);
 
 const handlePush = (name) => {
 	router.push(`/details/${name}`);

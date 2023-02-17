@@ -22,7 +22,7 @@ import { useCartStore } from "../stores/cart";
 const cart = useCartStore();
 const ItemsInCart = ref();
 ItemsInCart.value = cart.storedItems;
-console.log(ItemsInCart.value);
+console.log("items in cart:", ItemsInCart.value);
 </script>
 <style scoped>
 .cart {

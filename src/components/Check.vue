@@ -8,20 +8,44 @@
 			</div>
 			<div class="check__item" v-for="(item, name) in props.items">
 				<p class="check__text">Product {{ name }}</p>
-				<p class="check__text">{{ item.amount * item.price }}</p>
+				<p class="check__text">
+					{{ parseFloat(item.amount * item.price).toFixed(2) }}
+				</p>
 			</div>
 		</div>
 		<hr style="width: 100%; margin: auto" />
 		<div class="check__item">
 			<h4 class="check__subtitle--modified">Total</h4>
-			<h4 class="check__subtitle--modified">{{ 500 }}</h4>
+			<h4 class="check__subtitle--modified">{{ total }}</h4>
 		</div>
 	</div>
 </template>
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref, onBeforeMount, watch } from "vue";
 const props = defineProps(["items"]);
-console.log("check", props.items);
+const entries = ref(Object.entries(props.items));
+const total = ref(0);
+
+watch(props.items, (newVal) => {
+	entries.value = Object.entries(newVal);
+	build(entries.value);
+});
+
+const build = (newVal) => {
+	total.value = 0;
+	newVal.forEach((element) => {
+		total.value += element[1].price * element[1].amount;
+	});
+	total.value = parseFloat(total.value).toFixed(2);
+};
+onBeforeMount(() => {
+	entries.value.forEach((element) => {
+		total.value += element[1].price * element[1].amount;
+	});
+	total.value = parseFloat(total.value).toFixed(2);
+});
+
+console.log(entries.value);
 </script>
 <style scoped>
 .check {
@@ -32,6 +56,7 @@ console.log("check", props.items);
 	top: 0px;
 	max-height: 100vh;
 	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .check__item {

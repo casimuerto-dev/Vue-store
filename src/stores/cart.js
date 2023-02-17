@@ -6,9 +6,7 @@ export const useCartStore = defineStore("cart", () => {
 	const cantDeleteMore = ref(false);
 
 	function increment(name, amountToAdd) {
-		console.log("increment");
 		if (!storedItems.value.items.hasOwnProperty(name)) {
-			console.log("does not exist");
 			storedItems.value.items[name] = {
 				amount: amountToAdd || 1,
 				price:
@@ -17,7 +15,6 @@ export const useCartStore = defineStore("cart", () => {
 						: parseFloat(parseInt(name) + 20.99).toFixed(2),
 			};
 		} else {
-			console.log("does exist");
 			storedItems.value.items[name].amount =
 				storedItems.value.items[name].amount + (amountToAdd || 1);
 		}
@@ -26,33 +23,24 @@ export const useCartStore = defineStore("cart", () => {
 		if (storedItems.value.count > 1) {
 			cantDeleteMore.value = false;
 		}
-		console.log("store:", storedItems.value);
 	}
 
 	function decrement(name) {
-		console.log("decrement");
 		if (storedItems.value.items.hasOwnProperty(name)) {
-			console.log("exists");
 			if (storedItems.value.items[name].amount > 1) {
-				console.log("can be decreased");
 				storedItems.value.items[name].amount -= 1;
 				storedItems.value.count = storedItems.value.count - 1;
-				console.log("store:", storedItems.value);
 			} else {
-				console.log("can't be decreased");
 			}
 		} else {
-			console.log("does not exist");
 		}
 	}
 
 	const deleteItem = (name) => {
-		console.log("delete");
 		if (
 			storedItems.value.count > 1 &&
 			Object.keys(storedItems.value.items).length > 1
 		) {
-			console.log("more than 1");
 			storedItems.value.count =
 				storedItems.value.count - storedItems.value.items[name].amount;
 			delete storedItems.value.items[name];
