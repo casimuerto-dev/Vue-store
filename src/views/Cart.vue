@@ -29,10 +29,10 @@ console.log("items in cart:", ItemsInCart.value);
 	display: flex;
 	justify-content: space-evenly;
 	padding-top: 15px;
+	flex-wrap: wrap;
 }
 
 .cart__left--column {
-	width: 50%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -48,5 +48,11 @@ console.log("items in cart:", ItemsInCart.value);
 	box-shadow: 5px 5px 10px gray;
 	flex-basis: 40%;
 	height: auto;
+}
+
+@media screen and (max-width: 548px) {
+	.cart__right--column {
+		flex-basis: 64%;
+	}
 }
 </style>

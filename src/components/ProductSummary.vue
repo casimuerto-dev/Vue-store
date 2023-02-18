@@ -70,6 +70,10 @@ const handlePush = (name) => {
 	justify-content: center;
 }
 
+.summary__actions {
+	display: flex;
+	flex-wrap: nowrap;
+}
 .summary__buttons {
 	background-color: var(--active-color);
 	color: white;

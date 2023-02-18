@@ -101,6 +101,7 @@ onMounted(() => {
 .main {
 	display: flex;
 	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 .main__column--right {
@@ -108,6 +109,12 @@ onMounted(() => {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+}
+
+@media screen and (max-width: 764px) {
+	.main__column--right {
+		width: 80%;
+	}
 }
 
 .main__wrapper--right {

@@ -41,6 +41,16 @@
 	</header>
 	<slot></slot>
 
+	<span
+		style="transform: rotate(-90deg)"
+		:class="{
+			'go-back-up': true,
+			'material-symbols-outlined': true,
+		}"
+		@click="backUp"
+	>
+		arrow_forward_ios
+	</span>
 	<footer class="footer">
 		<div class="footer__info">
 			<p class="footer__text" style="text-decoration: underline">
@@ -70,6 +80,10 @@ const cart = useCartStore();
 const router = useRouter();
 const handlePush = (route) => {
 	router.push(`/${route}`);
+};
+
+const backUp = () => {
+	window.scrollTo({ top: 0, behavior: "smooth" });
 };
 </script>
 
@@ -144,6 +158,18 @@ const handlePush = (route) => {
 	font-family: cursive;
 	margin: 0;
 }
+
+.go-back-up {
+	position: fixed;
+	top: 80%;
+	right: 2%;
+	z-index: 10;
+	border-radius: 21%;
+	background-color: white;
+	box-shadow: -2px 2px 6px black;
+	cursor: pointer;
+}
+
 .footer {
 	display: flex;
 	background-color: black;
