@@ -57,11 +57,15 @@ const handlePush = (name) => {
 }
 .summary__image {
 	border-radius: 10%;
-	border: 5px solid white;
+	transition: all ease-in 0.25s;
+	width: 150px;
+	height: 150px;
 }
 .summary__image:hover {
-	border: 5px solid var(--hover-color);
+	width: 160px;
+	height: 160px;
 	cursor: pointer;
+	box-shadow: 5px 5px 10px black;
 }
 .summary__details {
 	display: flex;
