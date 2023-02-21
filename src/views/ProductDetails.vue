@@ -133,48 +133,6 @@ onMounted(() => {
 	margin-bottom: 30px;
 }
 
-.main__image--product-D {
-	border-radius: 20%;
-	transition: all 1s ease-in;
-	animation-name: appear;
-	animation-duration: 1s;
-	animation-timing-function: ease-in;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}
-
-.imageLoader {
-	height: 350px;
-	width: 350px;
-	background-size: 10px;
-	background: linear-gradient(90deg, lightgrey 40%, white, lightgrey 60%);
-	border-radius: 20%;
-	animation-name: movingBackground;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-fill-mode: forwards;
-}
-
-@keyframes appear {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes movingBackground {
-	from {
-		background-position: -175px;
-	}
-
-	to {
-		background-position: 175px;
-	}
-}
-
 .main__actions--button {
 	font-family: var(--main-font);
 	font-size: 20px;

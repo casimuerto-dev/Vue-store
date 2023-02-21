@@ -57,7 +57,7 @@
 					<p class="main__text main__text--modified">Product 1!</p>
 					<img
 						class="main__image--product"
-						:src="`https://picsum.photos/seed/${1}/300/300`"
+						:src="`https://picsum.photos/seed/${18}/300/300`"
 						@click="handleRedirect(1)"
 					/>
 					<p class="main__text--normal">Description of the product</p>
@@ -70,7 +70,7 @@
 
 					<img
 						class="main__image--product"
-						:src="`https://picsum.photos/seed/${2}/300/300`"
+						:src="`https://picsum.photos/seed/${22}/300/300`"
 						@click="handleRedirect(2)"
 					/>
 					<p class="main__text--normal">Description of the product</p>

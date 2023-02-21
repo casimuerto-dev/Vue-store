@@ -12,8 +12,8 @@
 				Products
 			</button>
 
-			<button class="menu__button" @click="handlePush">Other Stuff</button>
-			<button class="menu__button" @click="handlePush">About us</button>
+			<button class="menu__button">Other Stuff</button>
+			<button class="menu__button">About us</button>
 			<div
 				class="shopping-cart__wrapper"
 				v-show="cart.storedItems.count"
@@ -42,6 +42,7 @@
 	<slot></slot>
 
 	<span
+		title="Back to Top"
 		style="transform: rotate(-90deg)"
 		:class="{
 			'go-back-up': true,
@@ -139,15 +140,28 @@ const backUp = () => {
 	align-items: center;
 	border-radius: 20%;
 	padding: 5px;
+	animation: camaleon 2s infinite ease-in-out;
+}
+
+@keyframes camaleon {
+	from {
+		background-color: none;
+	}
+	50% {
+		background-color: rgb(0, 0, 0);
+	}
+	to {
+		background-color: none;
+	}
 }
 
 .shopping-cart__wrapper:hover {
-	background-color: white;
+	background-color: rgb(0, 0, 0);
 	cursor: pointer;
+	animation: none;
 }
 .shopping-cart__wrapper:hover .shopping-cart__icon,
 .shopping-cart__wrapper:hover .shopping-cart__count {
-	color: var(--hover-color);
 }
 
 .contains-items {

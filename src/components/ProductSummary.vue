@@ -1,9 +1,15 @@
 <template>
 	<div class="summary">
+		<div
+			class="imageLoader"
+			style="width: 150px; height: 150px"
+			v-if="!displayImage"
+		></div>
 		<img
 			@click="handlePush(props.name)"
-			class="summary__image"
+			class="summary__image main__image--product-D"
 			:src="`https://picsum.photos/seed/${props.name}/150/150`"
+			@load="displayImage = true"
 		/>
 		<div class="summary__details">
 			<p class="main__text--details">Porduct {{ props.name }}</p>
@@ -21,7 +27,10 @@
 				<button class="summary__buttons" @click="cart.increment(props.name)">
 					More
 				</button>
-				<button class="summary__buttons" @click="cart.deleteItem(props.name)">
+				<button
+					class="summary__buttons delete"
+					@click="cart.deleteItem(props.name)"
+				>
 					Delete
 				</button>
 			</div>
@@ -37,14 +46,14 @@
 	</div>
 </template>
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 import { useCartStore } from "../stores/cart";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const cart = useCartStore();
 const props = defineProps(["name", "amount"]);
-
+const displayImage = ref(false);
 const handlePush = (name) => {
 	router.push(`/details/${name}`);
 };
@@ -93,6 +102,10 @@ const handlePush = (name) => {
 .summary__buttons:hover {
 	background-color: var(--hover-color);
 	box-shadow: 5px 5px 10px gray;
+}
+
+.delete:hover {
+	background-color: rgb(248, 115, 115);
 }
 
 .summary__buttons:active {
